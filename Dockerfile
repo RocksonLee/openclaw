@@ -8,19 +8,12 @@ RUN apt-get update \
         curl \
         git \
         golang-go \
+    && mkdir -p /go/bin /go/pkg/mod \
+    && chown -R node:node /go \
     && rm -rf /var/lib/apt/lists/*
 
 ENV GOPATH=/go
+ENV GOBIN=/go/bin
 ENV PATH=/go/bin:/usr/local/go/bin:$PATH
-
-# Optional tools:
-# Add extra Go-based tools here when needed.
-#
-# Example:
-# RUN go install github.com/example/tool@latest
-#
-# gifgrep:
-# Confirm the official Go install path from /app/skills/gifgrep/SKILL.md
-# before enabling a go install command.
 
 USER node
